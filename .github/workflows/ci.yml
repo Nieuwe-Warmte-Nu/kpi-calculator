@@ -11,7 +11,6 @@ jobs:
         python-version: ["3.11"]
     name: Setup
     steps:
-      # 
       - uses: actions/checkout@v3
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4
@@ -28,7 +27,6 @@ jobs:
         with:
           path: ./venv.tar
           name: ${{ runner.os }}-python-${{ matrix.python-version }}-venv-${{github.run_id}}
-      # 
 
   lint:
     name: Lint
@@ -39,7 +37,6 @@ jobs:
       matrix:
         python-version: ["3.11"]
     steps:
-      # 
       - uses: actions/checkout@v3
       - name: Restore venv
         uses: actions/download-artifact@v4
@@ -50,7 +47,6 @@ jobs:
       - name: Run lint
         run: |
           ./ci/linux/lint.sh
-      # 
 
   test:
     name: Test
@@ -61,7 +57,6 @@ jobs:
       matrix:
         python-version: ["3.11"]
     steps:
-      # 
       - uses: actions/checkout@v3
       - name: Restore venv
         uses: actions/download-artifact@v4
@@ -94,7 +89,6 @@ jobs:
           # Fail the workflow if no JUnit XML was found.
           # Default: true
           fail-on-empty: true
-      # 
 
   typecheck:
     name: Typecheck
@@ -105,7 +99,6 @@ jobs:
       matrix:
         python-version: ["3.11"]
     steps:
-      # 
       - uses: actions/checkout@v3
       - name: Restore venv
         uses: actions/download-artifact@v4
@@ -118,7 +111,6 @@ jobs:
       - name: Run typechecker
         run: |
           ./ci/linux/typecheck.sh
-      # 
 
   build:
     name: Build the python package
@@ -129,7 +121,6 @@ jobs:
       matrix:
         python-version: [ "3.11" ]
     steps:
-      # 
       - uses: actions/checkout@v3
       - name: Restore venv
         uses: actions/download-artifact@v4
@@ -140,4 +131,3 @@ jobs:
       - name: Build
         run: |
           ./ci/linux/build_python_package.sh
-      # 
