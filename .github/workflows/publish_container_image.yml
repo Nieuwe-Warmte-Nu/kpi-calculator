@@ -2,7 +2,7 @@ name: Deply to GitHub Container Registry
 on:
   push:
     tags:
-      - .*
+      - '*'
 
 jobs:
  publish-container-image:
